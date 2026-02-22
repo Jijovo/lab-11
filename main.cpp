@@ -8,14 +8,42 @@ using namespace std;
 struct Club {
     string clubName;
     int rank;
-    string* players[11];
+    string* players;
 };
 
 int main() {
     //creates a dynamic array of 3 football clubs.
     Club* clubs = new Club[3];
     //initializes the club names, ranks, and players' names for each club.
-    clubs[0].clubName = "Real Madrid";
-    
+    ifstream fin ("input.txt");
+    clubs[0].clubName = "Real Madrid"; //club 1 (guess who I support).
+    clubs[0].rank = 1;
+    clubs[0].players = new string[11];
+    for (int i = 0; i < 11; i++) {
+        getline(fin, clubs[0].players[i]);
+    }
+    clubs[1].clubName = "Barcelona"; //club 2
+    clubs[1].rank = 2;
+    clubs[1].players = new string[11];
+    for (int i = 0; i < 11; i++) {
+        getline(fin, clubs[1].players[i]);
+    }
+    clubs[2].clubName = "Atletico Madrid"; //club 3
+    clubs[2].rank = 3;
+    clubs[2].players = new string[11];
+    for (int i = 0; i < 11; i++) {
+        getline(fin, clubs[2].players[i]);
+    }
+    fin.close();
+    //prints the club names, ranks, and players' names for each club.
+    for (int i = 0; i < 3; i++) {
+        cout << "Club Name: " << clubs[i].clubName << endl;
+        cout << "Rank: " << clubs[i].rank << endl;
+        cout << "Players: " << endl;
+        for (int j = 0; j < 11; j++) {
+            cout << clubs[i].players[j] << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }
